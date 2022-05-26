@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
+import Layout from "./components/Layout";
+import PrivateRoute from "./components/PrivateRoute";
+import { AuthProvider } from "./contexts/AuthContext";
+
+import { AppRoutes } from "./routes";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          {AppRoutes.map((r, i) => {
+            if (r.private) {
+              return (
+                <Route key={i} path={r.url} element={<PrivateRoute />}>
+                  <Route path={r.url} element={r.component} />
+                </Route>
+              );
+            } else {
+              return <Route key={i} path={r.url} element={r.component} />;
+            }
+          })}
+        </Route>
+      </Routes>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
