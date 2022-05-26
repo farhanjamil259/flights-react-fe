@@ -20,7 +20,7 @@ const Settings = () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          "http://localhost:8000/api/settings",
+          process.env.REACT_APP_apiUrl + "/api/settings",
           header
         );
 
@@ -42,7 +42,7 @@ const Settings = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/settings",
+        process.env.REACT_APP_apiUrl + "/api/settings",
         {
           emailToSendTo: email,
         },

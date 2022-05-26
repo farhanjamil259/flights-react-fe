@@ -30,7 +30,7 @@ const Flights = () => {
       const header = await generateHeader();
       try {
         const res = await axios.get(
-          "http://localhost:8000/api/flights",
+          process.env.REACT_APP_apiUrl + "/api/flights",
           header
         );
 
