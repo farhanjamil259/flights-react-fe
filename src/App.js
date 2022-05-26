@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Routes, Route } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/PrivateRoute";

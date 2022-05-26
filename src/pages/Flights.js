@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
 import Card from "../components/Card";
 import Checkbox from "../components/Checkbox";
 import Table from "../components/Table";
