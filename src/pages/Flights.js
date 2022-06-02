@@ -16,14 +16,18 @@ const Flights = () => {
   const [showDelayed, setShowDelayed] = useState(true);
 
   const newData = useMemo(() => {
-    return flights.filter((d, i) => {
-      return (
-        (showDelayed && d.changed.includes("delayed")) ||
-        (showCancelled && d.changed.includes("cancelled")) ||
-        (showCancelled && d.flight.status === "cancelled")
-      );
-    }).reverse();
+    return flights
+      .filter((d, i) => {
+        return (
+          (showDelayed && d.changed.includes("delayed")) ||
+          (showCancelled && d.changed.includes("cancelled")) ||
+          (showCancelled && d.flight.status === "cancelled")
+        );
+      })
+      .reverse();
   }, [showCancelled, showDelayed, flights]);
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getFlightsData = async () => {
@@ -38,6 +42,8 @@ const Flights = () => {
       } catch (err) {
         console.log(err.message);
       }
+
+      setLoading(false);
     };
 
     getFlightsData();
@@ -59,7 +65,7 @@ const Flights = () => {
           }}
         />
       </div>
-      <Table data={newData} />
+      {!loading ? <Table data={newData} /> : "LOADING..."}
     </Card>
   );
 };
