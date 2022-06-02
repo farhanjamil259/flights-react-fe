@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./contexts/AuthContext";
+import Missing from "./pages/Missing";
 
 import { AppRoutes } from "./routes";
 
@@ -25,6 +26,8 @@ const App = () => {
             }
           })}
         </Route>
+
+        <Route path="*" element={<Missing />} />
       </Routes>
     </AuthProvider>
   );

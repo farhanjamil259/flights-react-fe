@@ -1,46 +1,45 @@
 import React from "react";
+import { Table as BTable } from "react-bootstrap";
 
 const Table = ({ data }) => {
   return (
     <div className="table-container">
-      <table className="table">
-        <thead className="table-head">
-          <tr className="table-row">
-            <th className="table-heading"></th>
-            <th className="table-heading">Status</th>
-            <th className="table-heading">Delay</th>
-            <th className="table-heading">Airline ICAO</th>
-            <th className="table-heading">Dep Time (est)</th>
-            <th className="table-heading">Dep Time (act)</th>
-            <th className="table-heading">Arr Time (est)</th>
-            <th className="table-heading">Arr Time (act)</th>
+      <BTable responsive hover>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Status</th>
+            <th>Delay</th>
+            <th>Dep IATA</th>
+            <th>Arr IATA</th>
+            <th>Dep Time (act)</th>
+            <th>Arr Time (act)</th>
           </tr>
         </thead>
-        <tbody className="table-body">
+        <tbody>
           {data?.map((d, i) => {
             return (
-              <tr key={i} className="table-row">
-                <td className="table-data">
-                  {!!d.flight.delayed ? (
+              <tr key={i}>
+                <td>
+                  {d.flight.delayed > 0 ? (
                     <DelayIcon />
-                  ) : d.status === "cancelled" ? (
+                  ) : d.flight.status === "cancelled" ? (
                     <CancelledIcon />
                   ) : (
                     ""
                   )}
                 </td>
-                <td className="table-data">{d.flight.status}</td>
-                <td className="table-data">{d.flight.delayed} mins</td>
-                <td className="table-data">{d.flight.airline_icao}</td>
-                <td className="table-data">{d.flight.dep_estimated_utc}</td>
-                <td className="table-data">{d.flight.dep_time_utc}</td>
-                <td className="table-data">{d.flight.arr_estimated_utc}</td>
-                <td className="table-data">{d.flight.arr_time_utc}</td>
+                <td>{d.flight.status}</td>
+                <td>{d.flight.delayed} mins</td>
+                <td>{d.flight.dep_iata}</td>
+                <td>{d.flight.arr_iata}</td>
+                <td>{d.flight.dep_time_utc}</td>
+                <td>{d.flight.arr_time_utc}</td>
               </tr>
             );
           })}
         </tbody>
-      </table>
+      </BTable>
     </div>
   );
 };

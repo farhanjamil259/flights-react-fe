@@ -6,6 +6,7 @@ import App from "./App";
 
 import { StoreProvider } from "./redux/store";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.scss";
 

@@ -15,4 +15,4 @@ const generateHeader = async () => {
   return payloadHeader;
 };
 
-module.exports = generateHeader;
+export default generateHeader

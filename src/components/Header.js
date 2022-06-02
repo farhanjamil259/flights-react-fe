@@ -1,9 +1,9 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 import { AppRoutes } from "../routes";
-import Button from "./Button";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -30,12 +30,14 @@ const Header = () => {
           </div>
 
           <Button
-            text="Sign Out"
+            variant="danger"
             onClick={async () => {
               await signOut();
               navigate("/login");
             }}
-          />
+          >
+            Sign Out
+          </Button>
         </>
       )}
     </div>

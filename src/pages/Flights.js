@@ -22,7 +22,7 @@ const Flights = () => {
         (showCancelled && d.changed.includes("cancelled")) ||
         (showCancelled && d.flight.status === "cancelled")
       );
-    });
+    }).reverse();
   }, [showCancelled, showDelayed, flights]);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const Flights = () => {
   }, []);
 
   return (
-    <Card title="Flights Data">
+    <Card title={`Flights Data (${flights.length})`}>
       <div className="controls">
         <Checkbox
           label="Cancelled Flights"
