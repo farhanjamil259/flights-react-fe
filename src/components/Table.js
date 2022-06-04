@@ -8,6 +8,7 @@ const Table = ({ data }) => {
         <thead>
           <tr>
             <th></th>
+            <th>#</th>
             <th>Status</th>
             <th>Delay</th>
             <th>Dep IATA</th>
@@ -21,14 +22,15 @@ const Table = ({ data }) => {
             return (
               <tr key={i}>
                 <td>
-                  {d.flight.delayed > 0 ? (
-                    <DelayIcon />
-                  ) : d.flight.status === "cancelled" ? (
+                  {d.flight.status === "cancelled" ? (
                     <CancelledIcon />
+                  ) : d.flight.delayed > 0 ? (
+                    <DelayIcon />
                   ) : (
                     ""
                   )}
                 </td>
+                <td>{i + 1}</td>
                 <td>{d.flight.status}</td>
                 <td>{d.flight.delayed} mins</td>
                 <td>{d.flight.dep_iata}</td>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
+import { Form } from "react-bootstrap";
 import Card from "../components/Card";
 import Checkbox from "../components/Checkbox";
 import Table from "../components/Table";
@@ -16,15 +17,7 @@ const Flights = () => {
   const [showDelayed, setShowDelayed] = useState(true);
 
   const newData = useMemo(() => {
-    return flights
-      .filter((d, i) => {
-        return (
-          (showDelayed && d.changed.includes("delayed")) ||
-          (showCancelled && d.changed.includes("cancelled")) ||
-          (showCancelled && d.flight.status === "cancelled")
-        );
-      })
-      .reverse();
+    return flights.reverse();
   }, [showCancelled, showDelayed, flights]);
 
   const [loading, setLoading] = useState(true);
@@ -50,7 +43,7 @@ const Flights = () => {
   }, []);
 
   return (
-    <Card title={`Flights Data (${flights.length})`}>
+    <Card title={`Flights Data (${newData.length})`}>
       <div className="controls">
         <Checkbox
           label="Cancelled Flights"
